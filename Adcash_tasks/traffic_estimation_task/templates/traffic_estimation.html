@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Traffic Estimation</title>
+</head>
+<body style="background-color: rgb(211,211,211)">
+    <h1>get estimated traffic</h1>
+
+    <form action="/estimate" method="GET">
+        <p class="info-for-inputs" style="color: red">please enter only one value per field.</p>
+        <div class="request_count_input_div" style="padding-bottom: 10px">
+            <label for="request_count">Request count:</label>
+            <input type="number" id="request_count" name="request_count" required>
+        </div>
+        <div class="browser-input-div" style="padding-bottom: 10px">
+            <label for="browser">Browser:</label>
+            <input type="text" id="browser" name="browsername" placeholder="Chrome, Edge ...">
+        </div>
+        <div class="platform-input-div" style="padding-bottom: 10px">
+            <label for="platform">Platform:</label>
+            <input type="text" id="platform" name="platformname" placeholder="Windows, Mac ...">
+        </div>
+        <div class="country-input-div" style="padding-bottom: 10px">
+            <label for="country">Country:</label>
+            <input type="text" id="country" name="country" placeholder="BG, US ...">
+        </div>
+        <div class="vertical-input-div" style="padding-bottom: 10px">
+            <label for="vertical">Vertical:</label>
+            <input type="text" id="vertical" name="vertical" placeholder="">
+        </div>
+        <button type="submit">Submit</button>
+    </form>
+    <div class="field-messages">
+        <h2>Request count entered: {{ context['request_count'] }}</h2>
+        {% for message in context['field_messages'] %}
+            <p class="field-message">{{message}}</p>
+        {% endfor %}
+    </div>
+    <div class="estimation-div">
+        <h1>Estimated traffic: {{context['estimated_traffic']}}</h1>
+    </div>
+</body>
+</html>
